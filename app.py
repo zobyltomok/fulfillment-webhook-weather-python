@@ -101,8 +101,8 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
 
     url="https://1519cc15.ngrok.io/wsig/ws"
-    headers = {'content-type': 'application/soap+xml'}
-    #headers = {'content-type': 'text/xml'}
+    #headers = {'content-type': 'application/soap+xml'}
+    headers = {'content-type': 'text/xml'}
     body = """<?xml version="1.0" encoding="UTF-8" ?> 
             <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-
             instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
@@ -130,7 +130,7 @@ def makeWebhookResult(data):
 #                ", et il fera " + condition.get('temp') + " " + units.get('temperature')
 
     speech = response.content
-    
+
     print(speech)
 
     return {
