@@ -118,14 +118,14 @@ def makeWebhookResult(data):
                </soapenv:Body>
             </soapenv:Envelope>"""
 
-    response = requests.post(url,data=body,headers=headers)
+    #response = requests.post(url,data=body,headers=headers)
     # response = urllib2.Request(url, body, headers)
     #response = request(url=url,data=body,headers=headers, method=POST)
 
-    index1 = response.content.find("<sumReturn xmlns=\"\">")
-    index2 = response.content.find("</sumReturn>")
+    #index1 = response.content.find("<sumReturn xmlns=\"\">")
+    #index2 = response.content.find("</sumReturn>")
 
-    resultat = response.content[index1+20:index2]
+    #resultat = response.content[index1+20:index2]
 
     speech = "Ajourd'hui le temps à " + location.get('city') + ": " + condition.get('text') + \
                 ", et il fera " + "100" + " " + units.get('temperature')
