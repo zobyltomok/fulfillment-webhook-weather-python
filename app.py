@@ -29,8 +29,11 @@ from flask import Flask
 from flask import request
 from flask import make_response
 
+import requests
+
 # Flask app should start in global layout
 app = Flask(__name__)
+
 
 
 @app.route('/webhook', methods=['POST'])
@@ -98,8 +101,27 @@ def makeWebhookResult(data):
 
     # print(json.dumps(item, indent=4))
 
+    url="https://5478f0da.ngrok.io"
+    #headers = {'content-type': 'application/soap+xml'}
+    headers = {'content-type': 'text/xml'}
+    body = """<?xml version="1.0" encoding="UTF-8" ?> 
+            <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:MathFunctions">
+               <soapenv:Header/>
+               <soapenv:Body>
+                  <urn:sum soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+                     <firstElement xsi:type="xsd:float">6</firstElement>
+                     <secondElement xsi:type="xsd:float">7</secondElement>
+                  </urn:sum>
+               </soapenv:Body>
+            </soapenv:Envelope>"""
+
+    response = requests.post(url,data=body,headers=headers)
+
+
+
     speech = "Ajourd'hui le temps à " + location.get('city') + ": " + condition.get('text') + \
-             ", et il fera " + condition.get('temp') + " " + units.get('temperature')
+                ", et il fera " + response.content + " " + units.get('temperature')
+ #            ", et il fera " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
     print(speech)
