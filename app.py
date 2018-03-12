@@ -101,10 +101,11 @@ def makeWebhookResult(data):
 
     # print(json.dumps(item, indent=4))
 
+"""
     url="https://5478f0da.ngrok.io"
     #headers = {'content-type': 'application/soap+xml'}
     headers = {'content-type': 'text/xml'}
-    body = """<?xml version="1.0" encoding="UTF-8" ?> 
+    body = ""<?xml version="1.0" encoding="UTF-8" ?> 
             <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:MathFunctions">
                <soapenv:Header/>
                <soapenv:Body>
@@ -113,8 +114,8 @@ def makeWebhookResult(data):
                      <secondElement xsi:type="xsd:float">7</secondElement>
                   </urn:sum>
                </soapenv:Body>
-            </soapenv:Envelope>"""
-
+            </soapenv:Envelope>""
+"""
     #response = requests.post(url,data=body,headers=headers)
 
 
