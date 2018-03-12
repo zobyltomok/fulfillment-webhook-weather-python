@@ -115,13 +115,13 @@ def makeWebhookResult(data):
                </soapenv:Body>
             </soapenv:Envelope>"""
 
-    response = requests.post(url,data=body,headers=headers)
+    #response = requests.post(url,data=body,headers=headers)
 
 
 
     speech = "Ajourd'hui le temps à " + location.get('city') + ": " + condition.get('text') + \
-                ", et il fera " + response.content + " " + units.get('temperature')
- #            ", et il fera " + condition.get('temp') + " " + units.get('temperature')
+                ", et il fera " + condition.get('temp') + " " + units.get('temperature')
+ #            ", et il fera " + response.content + " " + units.get('temperature')
 
     print("Response:")
     print(speech)
