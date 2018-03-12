@@ -128,13 +128,13 @@ def makeWebhookResult(data):
     resultat = response.content[index1+20:index2]
 
     speech = "Ajourd'hui le temps à " + location.get('city') + ": " + condition.get('text') + \
-                ", et il fera " + resultat + " " + units.get('temperature')
+                ", et il fera " + index1 + " " + units.get('temperature')
 #                ", et il fera " + condition.get('temp') + " " + units.get('temperature')
 
 
 
 
-    print("Response:")
+    print("Response:")1234
     print(speech)
 
     return {
