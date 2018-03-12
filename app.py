@@ -25,7 +25,7 @@ from urllib.error import HTTPError
 import json
 import os
 
-import urllib2
+import requests
 
 from flask import Flask
 from flask import request
@@ -114,6 +114,7 @@ def makeWebhookResult(data):
                </soapenv:Body>
             </soapenv:Envelope>"""
 
+    response = requests.post(url,data=body,headers=headers)
     # response = urllib2.Request(url, body, headers)
     #response = request(url=url,data=body,headers=headers, method=POST)
 
