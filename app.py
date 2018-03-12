@@ -24,7 +24,6 @@ from urllib.error import HTTPError
 
 import json
 import os
-import requests
 
 from flask import Flask
 from flask import request
@@ -98,6 +97,23 @@ def makeWebhookResult(data):
         return {}
 
     # print(json.dumps(item, indent=4))
+
+    url="https://5478f0da.ngrok.io"
+    #headers = {'content-type': 'application/soap+xml'}
+    headers = {'content-type': 'text/xml'}
+    body = """<?xml version="1.0" encoding="UTF-8" ?> 
+            <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:MathFunctions">
+               <soapenv:Header/>
+               <soapenv:Body>
+                  <urn:sum soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+                     <firstElement xsi:type="xsd:float">6</firstElement>
+                     <secondElement xsi:type="xsd:float">7</secondElement>
+                  </urn:sum>
+               </soapenv:Body>
+            </soapenv:Envelope>"""
+
+    response = request(url=url,data=body,headers=headers, method=POST)
+
 
 
     speech = "Ajourd'hui le temps à " + location.get('city') + ": " + condition.get('text') + \
