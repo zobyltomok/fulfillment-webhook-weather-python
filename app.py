@@ -118,10 +118,8 @@ def makeWebhookResult(data):
                </soapenv:Body>
             </soapenv:Envelope>"""
 
-    #response = requests.post(url,data=body,headers=headers)
-    # response = urllib2.Request(url, body, headers)
-    #response = request(url=url,data=body,headers=headers, method=POST)
-
+    response = requests.post(url,data=body,headers=headers)
+ 
     #index1 = response.content.find("<sumReturn xmlns=\"\">")
     #index2 = response.content.find("</sumReturn>")
 
