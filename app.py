@@ -131,10 +131,6 @@ def makeWebhookResult(data):
                 ", et il fera " + index1 + " " + units.get('temperature')
 #                ", et il fera " + condition.get('temp') + " " + units.get('temperature')
 
-
-
-
-    print("Response:")1234
     print(speech)
 
     return {
