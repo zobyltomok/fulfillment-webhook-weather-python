@@ -100,32 +100,35 @@ def makeWebhookResult(data):
 
     # print(json.dumps(item, indent=4))
 
-    url="http://1519cc15.ngrok.io/wsig/ws"
+    url="https://1519cc15.ngrok.io/wsig/ws"
     headers = {'content-type': 'application/soap+xml'}
     #headers = {'content-type': 'text/xml'}
     body = """<?xml version="1.0" encoding="UTF-8" ?> 
-<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-
-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-xmlns:urn="urn:Math">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:sum 
-soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <firstElement xsi:type="xsd:float">6</firstElement>
-         <secondElement xsi:type="xsd:float">7</secondElement>
-      </urn:sum>
-   </soapenv:Body>
-</soapenv:Envelope>"""
+            <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-
+            instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+            xmlns:urn="urn:Math">
+               <soapenv:Header/>
+               <soapenv:Body>
+                  <urn:sum 
+            soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+                     <firstElement xsi:type="xsd:float">6</firstElement>
+                     <secondElement xsi:type="xsd:float">7</secondElement>
+                  </urn:sum>
+               </soapenv:Body>
+            </soapenv:Envelope>"""
 
     response = requests.post(url,data=body,headers=headers)
     # response = urllib2.Request(url, body, headers)
     #response = request(url=url,data=body,headers=headers, method=POST)
 
+    index1 = response.content.find("<sumReturn xmlns=\"\">")
+    index2 = response.content.find("</sumReturn>")
 
+    resultat = response.content[index1+20:index2]
 
     speech = "Ajourd'hui le temps à " + location.get('city') + ": " + condition.get('text') + \
-                ", et il fera " + response.content + " " + units.get('temperature')
+                ", et il fera " + resultat + " " + units.get('temperature')
 #                ", et il fera " + condition.get('temp') + " " + units.get('temperature')
 
 
